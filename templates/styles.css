@@ -1,0 +1,233 @@
+/* Main styles */
+body {
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }  
+  
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 2.5rem;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background-image: linear-gradient(to right, transparent, #3498db, transparent);
+  }
+  
+  /* Container for the whole app */
+  .todo-container {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Form styles */
+  form {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  input[type="text"] {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    width: 70%;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  button {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Todo list styles */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 90%;
+  }
+  
+  li {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    border-left: 4px solid #3498db;
+  }
+  
+  li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-content {
+    flex-grow: 1;
+    margin: 0 15px;
+    font-size: 18px;
+  }
+  
+  .todo-done {
+    text-decoration: line-through;
+    opacity: 0.6;
+    color: #7f8c8d;
+  }
+  
+  .todo-actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .todo-actions a {
+    color: #7f8c8d;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .edit-btn {
+    color: #f39c12;
+  }
+  
+  .delete-btn {
+    color: #e74c3c;
+  }
+  
+  .todo-actions a:hover {
+    color: #333;
+  }
+  
+  /* Checkbox styling */
+  input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #3498db;
+  }
+  
+  /* Back to list link */
+  .back-link {
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .back-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: rgba(52, 152, 219, 0.1);
+    transition: all 0.2s;
+  }
+  
+  .back-link a:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+  }
+  
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 30px 0;
+    color: #7f8c8d;
+  }
+  
+  .empty-state p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  li {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    
+    button {
+      margin-left: 0;
+      width: 100%;
+    }
+    
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px;
+    }
+    
+    .todo-content {
+      margin: 10px 0;
+      width: 100%;
+    }
+    
+    .todo-actions {
+      margin-top: 10px;
+      align-self: flex-end;
+    }
+  }
