@@ -1,24 +1,17 @@
-# Use the official Python image
-FROM python:3.11-slim
+# Use official Nginx image
+FROM nginx:alpine
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Remove default Nginx web content
+RUN rm -rf /usr/share/nginx/html/*
 
-# Set work directory inside container
-WORKDIR /app
+# Copy your static files to the Nginx HTML directory
+COPY . /usr/share/nginx/html
 
-# Copy dependencies
-COPY requirements.txt .
+# Update Nginx to listen on port 8080 (Cloud Run requirement)
+RUN sed -i 's/80;/8080;/' /etc/nginx/conf.d/default.conf
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy project files into the container
-COPY . .
-
-# Expose the port Flask will run on
+# Expose port 8080
 EXPOSE 8080
 
-# Run the app
-CMD ["python", "main.py"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;", "python" ,"main.py"]
